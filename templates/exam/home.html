@@ -1,0 +1,20 @@
+    {% extends 'base.html' %}
+    {% block content %}
+
+    
+    <h1> Te damos la Bienvenida {{ user.first_name }}</h1>
+
+    <p>{{ user.first_name }}</p>
+    <p>{{ user.last_name }}</p>
+    <p>{{ user.email }}</p>
+
+    {% for module in user.exam.modules.all %}
+    <a href="{% url 'exam:question' module.id %}">{{ module }}</a>
+    {% endfor %}
+    {% endblock %}
+
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Salir">
+    </form>
+
